@@ -51,8 +51,6 @@ object AppModule {
     @Provides
     @Singleton
     fun provideWeatherGetWeatherUseCase(repository: WeatherRepository): GetWeatherUseCase {
-        // Here we bind the implementation (WeatherRepositoryImpl)
-        // to the abstraction (WeatherRepository). This is DIP in action.
         return GetWeatherUseCase(repository = repository)
     }
 }

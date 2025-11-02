@@ -5,21 +5,30 @@ package com.muss_coding.solidweather.domain.model
  * This sealed class helps us map the WMO (World Meteorological Organization)
  * weather codes from the API into human-readable and icon-ready types.
  */
+/*
+ * Domain Layer: Model Logic
+ * This sealed class helps us map the WMO (World Meteorological Organization)
+ * weather codes from the API into human-readable and icon-ready types.
+ *
+ * UPDATE: We are now using String names for drawable resources
+ * instead of emojis. You will need to add these drawables
+ * (e.g., ic_sunny.xml) to your res/drawable folder.
+ */
 sealed class WeatherType(
     val weatherDesc: String,
-    val iconRes: String // In a real app, you'd map this to a drawable resource
+    val iconRes: String // This is now a String NAME for a drawable
 ) {
-    data object ClearSky : WeatherType("Clear sky", "☀️")
-    data object MainlyClear : WeatherType("Mainly clear", "🌤️")
-    data object PartlyCloudy : WeatherType("Partly cloudy", "🌥️")
-    data object Overcast : WeatherType("Overcast", "☁️")
-    data object Foggy : WeatherType("Foggy", "🌫️")
-    data object Drizzle : WeatherType("Drizzle", "🌦️")
-    data object Rain : WeatherType("Rain", "🌧️")
-    data object RainShowers : WeatherType("Rain showers", "🌧️")
-    data object SnowFall : WeatherType("Snow fall", "❄️")
-    data object SnowShowers : WeatherType("Snow showers", "❄️")
-    data object Thunderstorm : WeatherType("Thunderstorm", "⛈️")
+    data object ClearSky : WeatherType("Clear sky", "ic_sunny")
+    data object MainlyClear : WeatherType("Mainly clear", "ic_cloudy")
+    data object PartlyCloudy : WeatherType("Partly cloudy", "ic_cloudy")
+    data object Overcast : WeatherType("Overcast", "ic_cloudy")
+    data object Foggy : WeatherType("Foggy", "ic_very_cloudy")
+    data object Drizzle : WeatherType("Drizzle", "ic_rainshower")
+    data object Rain : WeatherType("Rain", "ic_rainy")
+    data object RainShowers : WeatherType("Rain showers", "ic_rainshower")
+    data object SnowFall : WeatherType("Snow fall", "ic_snowy")
+    data object SnowShowers : WeatherType("Snow showers", "ic_snowy")
+    data object Thunderstorm : WeatherType("Thunderstorm", "ic_thunder")
 
     companion object {
         fun fromWMO(code: Int): WeatherType {

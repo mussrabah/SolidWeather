@@ -29,23 +29,38 @@ class WeatherViewModel @Inject constructor(
     // The public, immutable state for the UI
     val state = _state.asStateFlow()
 
+    // Store last loaded coords for refresh
+    private var lastLat: Double = 52.23
+    private var lastLong: Double = 21.01
+
     init {
         // Load default weather for Warsaw, Poland
-        onEvent(WeatherEvent.LoadWeather(52.23, 21.01))
+        onEvent(WeatherEvent.LoadWeather(lastLat, lastLong))
     }
 
     fun onEvent(event: WeatherEvent) {
         when (event) {
             is WeatherEvent.LoadWeather -> {
+                lastLat = event.lat
+                lastLong = event.long
                 loadWeather(event.lat, event.long)
+            }
+            // NEW: Handle Refresh event
+            is WeatherEvent.Refresh -> {
+                loadWeather(lastLat, lastLong, isRefreshing = true)
             }
         }
     }
 
-    private fun loadWeather(lat: Double, long: Double) {
+    private fun loadWeather(lat: Double, long: Double, isRefreshing: Boolean = false) {
         viewModelScope.launch {
             // Set loading state
-            _state.update { it.copy(isLoading = true, error = null) }
+            _state.update {
+                it.copy(
+                    isLoading = !isRefreshing, // Only show full loading on initial load
+                    error = null
+                )
+            }
 
             // Fetch data
             when (val result = getWeatherUseCase(lat, long)) {

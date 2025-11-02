@@ -78,4 +78,17 @@ dependencies {
 
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    // --- NEW DEPENDENCIES FOR UI ---
+    // Accompanist for System UI Controller (transparent status bar)
+    implementation(libs.accompanist.systemuicontroller)
+
+    // Material Icons Extended (for weather detail icons)
+    implementation(libs.androidx.compose.material.icons.extended)
+
+    // Coil for image loading (we'll use this for drawable icons)
+    implementation(libs.coil.compose)
+
+    // Pull to Refresh
+    implementation(libs.androidx.compose.material)
 }
