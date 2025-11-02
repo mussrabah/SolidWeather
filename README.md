@@ -8,10 +8,7 @@ This project serves as the **official, open-source capstone** to my Medium serie
 
 ## 📱 App Showcase
 
-> 💡 **Tip:** Record a short 5–10 second GIF of you scrolling and refreshing the app and replace the image below.  
-> This is the best way to show off your work!
-
-![App Screenshot](https://i.imgur.com/your-screenshot-link.png)
+![App Screenshot](screenshots/screen.gif)
 
 ---
 
@@ -114,7 +111,7 @@ Fetches data from the network and maps DTOs to clean models used by the domain l
 
 3. Build and run.
 
-The app uses the **Open-Meteo API**, which does not require an API key.
+> The app uses the **Open-Meteo API**, which does not require an API key.
 
 ## 📄 License
 ### MIT Licence
